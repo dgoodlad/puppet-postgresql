@@ -43,8 +43,8 @@ class postgresql::paths {
         }
       }
 
-      $bindir                   = "/usr/lib/postgresql/${::postgres_default_version}/bin"
-      $datadir                  = "/var/lib/postgresql/${::postgres_default_version}/main"
+      $bindir                   = "/usr/lib/postgresql/${version}/bin"
+      $datadir                  = "/var/lib/postgresql/${version}/main"
       $service_status           = "/etc/init.d/${service_name} status | /bin/egrep -q 'Running clusters: .+'"
       # TODO: not exactly sure yet what the right thing to do for Debian/Ubuntu is.
       #$persist_firewall_command = '/sbin/iptables-save > /etc/iptables/rules.v4'
