@@ -11,6 +11,8 @@
 # Sample Usage:
 #
 class postgresql::params {  
+  include postgresql::paths
+
   $user                         = 'postgres'
   $group                        = 'postgres'
   $ip_mask_deny_postgres_user   = '0.0.0.0/0'
@@ -20,6 +22,7 @@ class postgresql::params {
   $ipv6acls                     = []
   # TODO: figure out a way to make this not platform-specific
   $manage_redhat_firewall       = false
+  $service_name                 = $postgresql::paths::service_name
 
   # This is a bit hacky, but if the puppet nodes don't have pluginsync enabled,
   # they will fail with a not-so-helpful error message.  Here we are explicitly
