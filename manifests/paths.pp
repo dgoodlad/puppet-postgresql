@@ -26,6 +26,7 @@ class postgresql::paths {
         $bindir       = "/usr/pgsql-${version}/bin"
         $datadir      = "/var/lib/pgsql/${version}/data/"
       } # case
+      $confdir = $datadir
     }
 
     'Debian': {
@@ -45,6 +46,7 @@ class postgresql::paths {
 
       $bindir                   = "/usr/lib/postgresql/${version}/bin"
       $datadir                  = "/var/lib/postgresql/${version}/main"
+      $confdir                  = "/etc/postgresql/${version}/main"
       $service_status           = "/etc/init.d/${service_name} status | /bin/egrep -q 'Running clusters: .+'"
       # TODO: not exactly sure yet what the right thing to do for Debian/Ubuntu is.
       #$persist_firewall_command = '/sbin/iptables-save > /etc/iptables/rules.v4'
@@ -58,9 +60,9 @@ class postgresql::paths {
   }
   $initdb_path          = "${bindir}/initdb"
   $createdb_path        = "${bindir}/createdb"
-  $psql_path            = "${bindir}/psql"      
-  $pg_hba_conf_path     = "${datadir}pg_hba.conf"
-  $postgresql_conf_path = "${datadir}postgresql.conf"
+  $psql_path            = "${bindir}/psql"
+  $pg_hba_conf_path     = "${confdir}/pg_hba.conf"
+  $postgresql_conf_path = "${confdir}/postgresql.conf"
   
 
 }
